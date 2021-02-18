@@ -1,0 +1,119 @@
+Last login: Thu Feb 18 14:45:01 on ttys000
+-bash: /usr/local/mysql-8.0.23-macos10.15-x86_64/bin: is a directory
+ASHISHs-MacBook-Air:~ ashishranjan$ mysql -u root -p
+-bash: mysql: command not found
+ASHISHs-MacBook-Air:~ ashishranjan$ /usr/local/mysql-8.0.23-macos10.15-x86_64/bin/mysql -uroot -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.23 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.03 sec)
+
+mysql> create database applicate;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> create table stockavailability(stkid int(50),prodid int(50),stkavail int(50),price decimal(10,2), date Date);
+ERROR 1046 (3D000): No database selected
+mysql> use applicate
+Database changed
+mysql> create table stockavailability(stkid int(50),prodid int(50),stkavail int(50),price decimal(10,2), date Date);
+Query OK, 0 rows affected, 3 warnings (0.03 sec)
+
+mysql> select * from stockavailability;
+Empty set (0.02 sec)
+
+mysql> create table product(prodid int(50),shopid int(50),price decimal(10,2),maxavail int(20),date DATE);
+Query OK, 0 rows affected, 3 warnings (0.03 sec)
+
+mysql> create table shop(shopid int(50),shopname varchar(45),primary key(shopid));
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> insert into product(prodid,shopid,price,maxavail,date) values(1232,541,51531.24,12,'2015-12-08');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product(prodid,shopid,price,maxavail,date) values(1233,542,62331.80,32,'2015-02-08');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from product;
++--------+--------+----------+----------+------------+
+| prodid | shopid | price    | maxavail | date       |
++--------+--------+----------+----------+------------+
+|   1232 |    541 | 51531.24 |       12 | 2015-12-08 |
+|   1233 |    542 | 62331.80 |       32 | 2015-02-08 |
++--------+--------+----------+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into product(prodid,shopid,price,maxavail,date) values(1234,543,38341.30,18,'2015-06-18');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product(shopid,shopname) values(541,"BERA ENTERPRISES");
+ERROR 1054 (42S22): Unknown column 'shopname' in 'field list'
+mysql> insert into product(shopid,shopname) values(541,'BERA ENTERPRISES');
+ERROR 1054 (42S22): Unknown column 'shopname' in 'field list'
+mysql> mysql> insert innto shop(shopnamshopname) values(541,'BERA ENTERPRISES');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'shop(shopname) values(541,'BERA ENTERPRISES')' at line 1
+mysql> insert into shop(shopid,shopname) values(541,'BERA ENTERPRISES');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into shop(shopid,shopname) values(541,'BERA ENTERPRISEmysql> insert into shop(shopid,shopname) values(541,'BERA ENTERPRISS');       mysql> insert into prodnto shop(shopname) values(541,'BERA ENTERP
+mysql> insert into shop(shopid,shopname) values(542,'VIDHI INFRASTRUCTUR');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into shop(shopid,shopname) vaϴཥes(5ϴ3,'VIDHI INFRASTRUCTUR');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into shop(shopid,shopname) values(543,'KINJAL ENTERPRISE');
+ERROR 1062 (23000): Duplicate entry '543' for key 'shop.PRIMARY'
+mysql> insert into shop(shopid,shopname) values(544,'KINJAL ENTERPRISE');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from shop;
++--------+---------------------+
+| shopid | shopname            |
++--------+---------------------+
+|    541 | BERA ENTERPRISES    |
+|    542 | VIDHI INFRASTRUCTUR |
+|    543 | VIDHI INFRASTRUCTUR |
+|    544 | KINJAL ENTERPRISE   |
++--------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> delete from shop where shopid=543;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from shop;
++--------+---------------------+
+| shopid | shopname            |
++--------+---------------------+
+|    541 | BERA ENTERPRISES    |
+|    542 | VIDHI INFRASTRUCTUR |
+|    544 | KINJAL ENTERPRISE   |
++--------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE PROCEDURE product
+    -> AS
+    -> Select * from product
+    -> go;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS
+Select * from product
+go' at line 2
+mysql> 
